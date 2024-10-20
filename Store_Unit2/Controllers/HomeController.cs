@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Store_Unit2.Models;
 using System.Diagnostics;
 
@@ -25,5 +26,17 @@ namespace Store_Unit2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+
+        [HttpGet]
+        public IActionResult ProductView(int id)
+        {
+            var product = context.Products.Find(id); 
+            return View("ProductView", product); 
+        }
+
+
     }
 }

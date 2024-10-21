@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Ganss.XSS;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Store_Unit2.Models;
 using System.Diagnostics;
@@ -37,6 +38,51 @@ namespace Store_Unit2.Controllers
             return View("ProductView", product); 
         }
 
+        public IActionResult Delete(int id)
+        {
+            Product del = context.Products.Find(id);
+            context.Products.Remove(del);
+            context.SaveChanges();
+            var c = context.Products.ToList();
+            return View("Index", c);    
+        }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View("ProductForm");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var c = context.Products.Find(id);
+            return View("ProductForm", c);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(Product c)
+        {
+            if (ModelState.IsValid)
+            {
+                var sanitizer = new HtmlSanitizer();
+                product.Name = sanitizer.Sanitize(product.Name);
+                product.Description = sanitizer.Sanitize(product.Description);
+
+                if (c.Id == 0)
+                {
+                    context.Products.Add(c);
+                }
+                else
+                {
+                    context.Products.Update(c);
+
+                }
+                context.SaveChanges();
+                var chars = context.Products.ToList();
+                return View("Index", chars);
+            }
+            else { return View("ProductForm", c); }
+        }
     }
 }

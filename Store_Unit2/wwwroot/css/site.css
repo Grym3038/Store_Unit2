@@ -95,3 +95,20 @@ body {
 .product-container:hover .product-image {
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
+
+
+/*Pluss icon part*/
+
+.plus-icon {
+    font-size: 5rem; /* Adjust the size of the + icon */
+    color: lightgray;
+}
+
+.product-container:hover .plus-icon {
+    color: white; /* Change the icon color on hover */
+}
+
+.product-card {
+    cursor: pointer;
+}

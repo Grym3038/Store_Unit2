@@ -9,25 +9,36 @@
 
 
 <div class="container mt-5">
-    <h2>Add New Product</h2>
-    <form asp-action="Edit" method="post">
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Summary of validation errors -->
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <form asp-action="Edit" method="post" novalidate>
         <div class="form-group">
             <label asp-for="Name">Name: </label>
-            <input type="text" asp-for="Name" required/>
+            <input type="text" asp-for="Name" class="form-control @(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "is-invalid" : "is-valid")" required/>
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="Description">Description: </label>
-            <textarea asp-for="Description" class="form-control"></textarea>
+            <textarea asp-for="Description" class="form-control @(ViewData.ModelState["Description"]?.Errors.Count > 0 ? "is-invalid" : "is-valid")"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
         </div>
-        <div class="form-group">
 
+        <div class="form-group">
             <label asp-for="Price">Price</label>
-            <input asp-for="Price" type="number" step="0.01" class="form-control" name="Price" required />
+            <input asp-for="Price" type="number" step="0.01" class="form-control @(ViewData.ModelState["Price"]?.Errors.Count > 0 ? "is-invalid" : "is-valid")" required/>
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="ImagePath">Image Path</label>
-            <input type="text" class="form-control"  asp-for="ImagePath" name="ImagePath" required />
+            <input type="text" asp-for="ImagePath" class="form-control @(ViewData.ModelState["ImagePath"]?.Errors.Count > 0 ? "is-invalid" : "is-valid")" required/>
+            <span asp-validation-for="ImagePath" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Add Product</button>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Product</button>
     </form>
 </div>

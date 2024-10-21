@@ -67,7 +67,7 @@ body {
 
 /* Darken the overlay on hover */
 .product-container:hover .overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay on hover */
+    background-color: rgba(0, 0, 0, .75); /* Dark overlay on hover */
 }
 
 .product-name {

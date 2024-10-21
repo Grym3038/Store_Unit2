@@ -103,12 +103,16 @@ body {
 .plus-icon {
     font-size: 5rem; /* Adjust the size of the + icon */
     color: lightgray;
-}
-
-.product-container:hover .plus-icon {
-    color: white; /* Change the icon color on hover */
-}
-
-.product-card {
-    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ffffff; /* White text color */
+    padding: 10px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    height: 100%; /* Full height to center vertically */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }

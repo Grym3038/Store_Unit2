@@ -1,4 +1,4 @@
-﻿using Ganss.XSS;
+﻿using Ganss.Xss;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Store_Unit2.Models;
@@ -64,10 +64,11 @@ namespace Store_Unit2.Controllers
         public IActionResult Edit(Product c)
         {
             if (ModelState.IsValid)
-            {
+            {   
+                //ew jerms (nasty code)
                 var sanitizer = new HtmlSanitizer();
-                product.Name = sanitizer.Sanitize(product.Name);
-                product.Description = sanitizer.Sanitize(product.Description);
+                c.Name = sanitizer.Sanitize(c.Name);
+                c.Description = sanitizer.Sanitize(c.Description);
 
                 if (c.Id == 0)
                 {
